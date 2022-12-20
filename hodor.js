@@ -10,13 +10,18 @@ function translatorUrl(input){
     return (serverUrl + "?" + "text" + "=" + input);
 }
 
+function errorHandler(error){
+    console.log("An error occured: ", error);
+    alert("An error has occured. Please try after sometime.")
+}
+
 function clickHandler(){
     fetch(translatorUrl(inputText.value))
     .then(response => response.json())
     .then(json => {
         var outputValue = json.contents.translation;
         outputText.innerHTML = outputValue;
-    })
+    }).catch(errorHandler);
 
 }
 
